@@ -32,6 +32,6 @@ app.get("/" , async(req , res)=>{
 })
 
 // Starting server
-app.listen(PORT ,  function (){
+app.listen( process.env.RAILWAY_PORT || PORT ,  function (){
     console.log(`Server Up at http://localhost:${PORT}`);
 });
