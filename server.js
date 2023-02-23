@@ -27,11 +27,11 @@ const quizRoutes = require("./controllers/quizController");
 // Initializing different Routes with base Apis //
 app.use('/api', quizRoutes);
 
-app.get("/" , async(req , res)=>{
-    res.json({"status" : true})
+app.use("/" , async(req , res)=>{
+    res.send("WELCOME TO MY EXPRESS SERVER")
 })
 
 // Starting server
-app.listen( process.env.RAILWAY_PORT || PORT ,  function (){
+app.listen( PORT ,  function (){
     console.log(`Server Up at http://localhost:${PORT}`);
 });
