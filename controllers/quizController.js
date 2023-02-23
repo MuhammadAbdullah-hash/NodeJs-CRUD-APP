@@ -1,6 +1,6 @@
 const express = require('express')
 const quizController = express.Router()
-const pool = require('../dataBase/dbConnector');
+const pool = require('../dataBase/dbConnector.js');
 
 quizController.use((req, res, next) => {
     next();
