@@ -22,8 +22,6 @@ app.use(express.json());
 
 // ----------- Importing Controlelrs -----------//
 const quizRoutes = require("./controllers/quizController");
-const pool = require('./dataBase/dbConnector.js');
-
 
 
 // Initializing different Routes with base Apis //
