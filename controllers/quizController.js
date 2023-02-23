@@ -163,7 +163,7 @@ quizController.get('/quiz/:id', async (req, res) => {
         pool.getConnection(function(err , connection){
             if( err ){
                 statusCode = 500;
-                res.status(statusCode).json({success : false, errors :  [ 1 ] , data : null});        
+                res.status(statusCode).json({success : false, errors :  [ 1 ] , data : err });        
             }
             else{
                 connection.beginTransaction(function(err1){
