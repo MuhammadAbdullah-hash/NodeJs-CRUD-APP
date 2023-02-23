@@ -27,10 +27,10 @@ const quizRoutes = require("./controllers/quizController");
 app.use('/api', quizRoutes);
 
 app.use("/" , async(req , res)=>{
-    res.send("WELCOME TO MY EXPRESS SERVER")
+    res.json({status : true , data : process.env})
 })
 
 // Starting server
 app.listen( process.env.PORT || 5000 ,  function (){
-    console.log('Server Up');
+    console.log(`Server Up at ${process.env.PORT}`);
 });
