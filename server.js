@@ -27,6 +27,9 @@ const quizRoutes = require("./controllers/quizController");
 // Initializing different Routes with base Apis //
 app.use('/api', quizRoutes);
 
+app.get("/" , async(req , res)=>{
+    res.json({"status" : true})
+})
 
 // Starting server
 app.listen(PORT ,  function (){
