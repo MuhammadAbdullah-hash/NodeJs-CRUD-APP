@@ -14,7 +14,6 @@ const ERROR_CODE = {
     7 : "INCORRECT PAYLOAD"
 }
 // ------ Initializing Middle-Ware ------ //
-const PORT  = process.env.SERVER_PORT;
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -32,6 +31,6 @@ app.use("/" , async(req , res)=>{
 })
 
 // Starting server
-app.listen( PORT ,  function (){
-    console.log(`Server Up at http://localhost:${PORT}`);
+app.listen( process.env.PORT || 5000 ,  function (){
+    console.log('Server Up');
 });
