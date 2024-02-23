@@ -1,0 +1,32 @@
+name: Deploy to VM
+
+on:
+  push:
+    branches: main
+
+jobs:
+  Deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2 
+
+      - name: Build & Deploy
+        env:
+            PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+            HOSTNAME: ${{secrets.HOST_DNS}}
+            USER_NAME: ${{secrets.USERNAME}}
+            TARGET_DIR: ${{ secrets.TARGET_DIR }}
+
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+              cd /var/www/bundle-backend
+              pm2 stop index.js --name prod
+              sudo git pull
+              sudo npm i
+              sudo npx prisma migrate dev
+              sudo npx prisma generate
+              pm2 restart index.js --name prod
+              '
